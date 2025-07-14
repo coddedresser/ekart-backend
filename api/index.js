@@ -15,11 +15,23 @@ connectDB();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://ecommerce-nine-mu-70.vercel.app"
+];
+
 app.use(
   cors({
-    origin: process.env.BASE_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
-    methods: "PUT,POST,GET,DELETE,PATCH,HEAD",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
