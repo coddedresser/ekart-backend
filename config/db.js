@@ -10,3 +10,6 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
+
+//mongodb+srv://jackalxa1:Sfhve0zfyUEptYLW@cluster0.l1elosh.mongodb.net/
